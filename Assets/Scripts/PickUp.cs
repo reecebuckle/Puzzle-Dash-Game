@@ -81,6 +81,9 @@ public class PickUp : MonoBehaviour {
             }
         }
 
+
+
+
     }
 
     //Velocity movement toward pickup parent and rotation
