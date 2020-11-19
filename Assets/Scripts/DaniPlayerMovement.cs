@@ -20,6 +20,9 @@ public class DaniPlayerMovement : MonoBehaviour
 
     //Movement
     public float moveSpeed = 4500;
+
+    public float walkSpeed = 4500f;
+    public float sprintSpeed = 6000f;
     public float maxSpeed = 20;
     public bool grounded;
     public LayerMask whatIsGround;
@@ -80,7 +83,11 @@ public class DaniPlayerMovement : MonoBehaviour
         y = Input.GetAxisRaw("Vertical");
         jumping = Input.GetButton("Jump");
         crouching = Input.GetKey(KeyCode.LeftControl);
+        sprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
+        moveSpeed = sprinting ? sprintSpeed : walkSpeed;
+
+        maxSpeed = sprinting ? 40 : 20;
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
             StartCrouch();
