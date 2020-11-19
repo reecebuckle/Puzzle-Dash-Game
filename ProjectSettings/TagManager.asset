@@ -19,6 +19,7 @@ TagManager:
 <<<<<<< HEAD
   - Player
   - Ground
+<<<<<<< HEAD
   - HoldableObjects
 =======
 <<<<<<< HEAD
@@ -34,6 +35,9 @@ TagManager:
 >>>>>>> origin/movement-mechanics
   - 
 >>>>>>> 680d9d11c4e656640b8f2f381be9cb1d579a8427
+=======
+  - 
+>>>>>>> parent of 7280d21... Adds object movement to daniplayer
   - 
   - 
   - 
