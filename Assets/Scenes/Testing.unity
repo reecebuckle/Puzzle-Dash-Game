@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 99056075}
   - component: {fileID: 99056074}
   - component: {fileID: 99056073}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: LongRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4068efbfc45123442a05bcdb1bc9951e, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 176819450}
   - component: {fileID: 176819449}
   - component: {fileID: 176819448}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0188cae65fc98944f86b36664d46ac54, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -706,155 +706,13 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!1 &270385907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 270385908}
-  - component: {fileID: 270385911}
-  - component: {fileID: 270385910}
-  - component: {fileID: 270385909}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &270385908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270385907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 328718019}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &270385909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270385907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2ae9a8a917f1f45a58cfe5510d80db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 590145326}
---- !u!81 &270385910
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270385907}
-  m_Enabled: 1
---- !u!20 &270385911
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270385907}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!1 &328718018
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 328718019}
-  - component: {fileID: 328718020}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &328718019
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328718018}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 270385908}
-  m_Father: {fileID: 1515145642}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &328718020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 328718018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab499b96d7f0399479933c73c116acc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1515145642}
 --- !u!43 &377500689
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -868,6 +726,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14720
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-16222
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1033,6 +894,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh26954
 =======
   m_Name: pb_Mesh14650
@@ -1043,6 +905,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14650
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16916
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1224,7 +1089,7 @@ GameObject:
   - component: {fileID: 533914096}
   - component: {fileID: 533914095}
   - component: {fileID: 533914094}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1285,7 +1150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bc60de4330266d4c8fb0551214c8fd1, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1535,7 +1400,7 @@ GameObject:
   - component: {fileID: 557153818}
   - component: {fileID: 557153817}
   - component: {fileID: 557153816}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,7 +1461,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bc60de4330266d4c8fb0551214c8fd1, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1834,6 +1699,7 @@ MonoBehaviour:
   m_SelectedEdges: []
   m_SelectedVertices: 
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &590145320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,6 +1850,8 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> origin/movement-mechanics
+=======
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
 --- !u!1001 &656225756
 PrefabInstance:
 >>>>>>> 680d9d11c4e656640b8f2f381be9cb1d579a8427
@@ -2113,21 +1981,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FPS Controller
       objectReference: {fileID: 0}
-    - target: {fileID: 6604245205917319954, guid: fab6c615796e3204e8ec194d0d41d33e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6604245205917319954, guid: fab6c615796e3204e8ec194d0d41d33e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6604245205917319964, guid: fab6c615796e3204e8ec194d0d41d33e,
-        type: 3}
-      propertyPath: m_StepOffset
-      value: 2.04
-      objectReference: {fileID: 0}
     - target: {fileID: 6604245205917319965, guid: fab6c615796e3204e8ec194d0d41d33e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2186,6 +2039,9 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
     - target: {fileID: 6604245207164494716, guid: fab6c615796e3204e8ec194d0d41d33e,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -2215,6 +2071,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.5
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> origin/movement-mechanics
@@ -2269,6 +2126,8 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: fab6c615796e3204e8ec194d0d41d33e, type: 3}
 >>>>>>> 680d9d11c4e656640b8f2f381be9cb1d579a8427
 =======
+=======
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fab6c615796e3204e8ec194d0d41d33e, type: 3}
@@ -2285,7 +2144,7 @@ GameObject:
   - component: {fileID: 674314955}
   - component: {fileID: 674314954}
   - component: {fileID: 674314953}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2337,7 +2196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6de20ff3868947c409249dca3ea18747, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2502,6 +2361,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh27006
 =======
   m_Name: pb_Mesh14702
@@ -2512,6 +2372,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14702
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-16434
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2677,7 +2540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801526692}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: WallRun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2710,6 +2573,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh27066
 =======
   m_Name: pb_Mesh14754
@@ -2720,6 +2584,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14754
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16962
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2889,7 +2756,7 @@ GameObject:
   - component: {fileID: 823010987}
   - component: {fileID: 823010986}
   - component: {fileID: 823010985}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2950,7 +2817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0188cae65fc98944f86b36664d46ac54, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3200,7 +3067,7 @@ GameObject:
   - component: {fileID: 905907148}
   - component: {fileID: 905907147}
   - component: {fileID: 905907146}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3214,7 +3081,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905907145}
-  m_Material: {fileID: 13400000, guid: 0b0f8dc9f884ba741a7850a15d1f19b2, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -3247,7 +3114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3c78b6ec24b7e61449f5706d1fc56ce9, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3498,104 +3365,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &935368711
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 935368712}
-  - component: {fileID: 935368714}
-  - component: {fileID: 935368713}
-  - component: {fileID: 935368715}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &935368712
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935368711}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.661, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1511734620}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &935368713
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935368711}
-  m_Enabled: 1
---- !u!20 &935368714
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935368711}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!114 &935368715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935368711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2ae9a8a917f1f45a58cfe5510d80db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: 100
-  playerBody: {fileID: 1511734620}
 --- !u!1 &1040222492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,7 +3378,7 @@ GameObject:
   - component: {fileID: 1040222496}
   - component: {fileID: 1040222495}
   - component: {fileID: 1040222494}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3670,7 +3439,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bc60de4330266d4c8fb0551214c8fd1, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3920,7 +3689,7 @@ GameObject:
   - component: {fileID: 1120926130}
   - component: {fileID: 1120926129}
   - component: {fileID: 1120926128}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3981,7 +3750,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bc60de4330266d4c8fb0551214c8fd1, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4227,6 +3996,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh27106
 =======
   m_Name: pb_Mesh14790
@@ -4237,6 +4007,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14790
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16992
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4402,6 +4175,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh26838
 =======
   m_Name: pb_Mesh14576
@@ -4412,6 +4186,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14576
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16882
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4581,7 +4358,7 @@ GameObject:
   - component: {fileID: 1373875693}
   - component: {fileID: 1373875692}
   - component: {fileID: 1373875691}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4642,7 +4419,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0188cae65fc98944f86b36664d46ac54, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4888,7 +4665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399343690}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4922,6 +4699,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh-28566
 =======
   m_Name: pb_Mesh14686
@@ -4932,6 +4710,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14686
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-14652
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5102,7 +4883,7 @@ GameObject:
   - component: {fileID: 1468848171}
   - component: {fileID: 1468848170}
   - component: {fileID: 1468848174}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: PressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5163,7 +4944,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8f50aa4c5e78c42418607368c97b4d8e, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5415,6 +5196,7 @@ MonoBehaviour:
   door: {fileID: 674314951}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
@@ -5590,12 +5372,15 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
 >>>>>>> origin/movement-mechanics
+=======
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
 --- !u!43 &1559128475
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -5609,6 +5394,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14588
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16894
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5774,6 +5562,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh27138
 =======
   m_Name: pb_Mesh14810
@@ -5784,6 +5573,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14810
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-14460
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5949,7 +5741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595788555}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: PressurePlateRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5991,7 +5783,7 @@ GameObject:
   - component: {fileID: 1596615035}
   - component: {fileID: 1596615034}
   - component: {fileID: 1596615033}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: JumpRamp (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6052,7 +5844,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4068efbfc45123442a05bcdb1bc9951e, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6265,7 +6057,7 @@ GameObject:
   - component: {fileID: 1613072033}
   - component: {fileID: 1613072032}
   - component: {fileID: 1613072031}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6326,7 +6118,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4068efbfc45123442a05bcdb1bc9951e, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9175,6 +8967,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh27054
 =======
   m_Name: pb_Mesh14742
@@ -9185,6 +8978,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14742
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16950
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9350,6 +9146,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh26978
 =======
   m_Name: pb_Mesh14674
@@ -9360,6 +9157,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14674
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-15372
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9525,6 +9325,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh26882
 =======
   m_Name: pb_Mesh14606
@@ -9535,6 +9336,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14606
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-13860
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9723,7 +9527,7 @@ GameObject:
   - component: {fileID: 1812469399}
   - component: {fileID: 1812469398}
   - component: {fileID: 1812469397}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: JumpRamp
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
   m_TagString: Untagged
@@ -9745,7 +9549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812469395}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -12.249783, y: 1.5161896, z: 0.52}
+  m_LocalPosition: {x: -12.249783, y: 1.5161896, z: -10.572876}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1399343690}
@@ -9795,7 +9599,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4068efbfc45123442a05bcdb1bc9951e, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10175,6 +9979,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh26894
 =======
   m_Name: pb_Mesh14618
@@ -10185,6 +9990,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14618
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh-13680
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10377,6 +10185,7 @@ Mesh:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: pb_Mesh27084
 =======
   m_Name: pb_Mesh14772
@@ -10387,6 +10196,9 @@ Mesh:
 =======
   m_Name: pb_Mesh14772
 >>>>>>> parent of 7280d21... Adds object movement to daniplayer
+=======
+  m_Name: pb_Mesh16976
+>>>>>>> parent of 680d9d1... Merges dani_movement into branch
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10556,7 +10368,7 @@ GameObject:
   - component: {fileID: 2080822669}
   - component: {fileID: 2080822668}
   - component: {fileID: 2080822667}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10617,7 +10429,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0188cae65fc98944f86b36664d46ac54, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10931,11 +10743,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6702408355818648141, guid: e6f63d4a456128e42bc613cfe41d9f66,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 6de20ff3868947c409249dca3ea18747, type: 2}
     - target: {fileID: 6702408355818648143, guid: e6f63d4a456128e42bc613cfe41d9f66,
         type: 3}
       propertyPath: m_Name
@@ -11192,7 +10999,7 @@ GameObject:
   - component: {fileID: 2144598232}
   - component: {fileID: 2144598231}
   - component: {fileID: 2144598230}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11253,7 +11060,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1bc60de4330266d4c8fb0551214c8fd1, type: 2}
+  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
