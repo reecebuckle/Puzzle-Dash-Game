@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DaniCameraMove : MonoBehaviour
+public class CameraMove : MonoBehaviour
 {
 
     public Transform player;

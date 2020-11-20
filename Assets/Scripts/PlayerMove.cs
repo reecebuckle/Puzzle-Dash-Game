@@ -3,13 +3,16 @@
 using System;
 using UnityEngine;
 
-public class DaniPlayerMovement : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
 
     //Assingables
     public Transform playerCam;
     public Transform orientation;
 
+    public Collider wallRunLeft;
+    public Collider wallRunRight;
+    public Transform raycastOrigin;
     //Other
     private Rigidbody rb;
 
@@ -31,12 +34,16 @@ public class DaniPlayerMovement : MonoBehaviour
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
+    public float slopeAngle;
+
+
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale;
     public float slideForce = 400;
-    public float slideCounterMovement = 0.2f;
+    float slideCounterMovement;
 
+    public float flatSlideCounterMovement = 0.2f;
     //Jumping
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
@@ -70,13 +77,20 @@ public class DaniPlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        determineSlope();
         MyInput();
         Look();
-    }
 
-    /// <summary>
-    /// Find user input. Should put this in its own class but im lazy
-    /// </summary>
+    }
+    private void determineSlope()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(raycastOrigin.position, raycastOrigin.TransformDirection(Vector3.down), out hit))
+        {
+            slopeAngle = Vector3.Angle(hit.normal, raycastOrigin.forward) - 90;
+        }
+    }
     private void MyInput()
     {
         x = Input.GetAxisRaw("Horizontal");
@@ -86,8 +100,10 @@ public class DaniPlayerMovement : MonoBehaviour
         sprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
         moveSpeed = sprinting ? sprintSpeed : walkSpeed;
-
         maxSpeed = sprinting ? 40 : 20;
+        slideCounterMovement = (slopeAngle < 0) ? -1 : flatSlideCounterMovement;
+
+
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
             StartCrouch();
@@ -97,6 +113,7 @@ public class DaniPlayerMovement : MonoBehaviour
 
     private void StartCrouch()
     {
+
         transform.localScale = crouchScale;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
