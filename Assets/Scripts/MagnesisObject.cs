@@ -54,15 +54,17 @@ public class MagnesisObject : MonoBehaviour
         //Look for holdable objects
         lookForObjects();
 
-        //Drop held object if sprinting or crouching
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            DropObject();
-        }
+
 
         //Drop held object if it surpasses max distance from player (usually 15f)
         if (heldObject != null)
         {
+            //Drop held object if sprinting or crouching
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                DropObject();
+            }
+
             //float objDistanceToParent = Vector3.Distance (heldObject.transform.position, guide.transform.position);
             float playerDistanceToObject = Vector3.Distance(transform.position, heldObject.transform.position);
             if (playerDistanceToObject > (maxDistance + 2f))
