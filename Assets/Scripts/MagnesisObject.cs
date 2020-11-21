@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+public class MagnesisObject : MonoBehaviour
 {
     //Set these in Unity (except look object is just for reference)
-    [Header("Player Holding Properities")]
+    [Header("Magnesis-ish Properities")]
     [SerializeField] private Transform guide = null;
     [SerializeField] private Transform defaultGuide = null;
 
@@ -42,8 +42,6 @@ public class PickUp : MonoBehaviour
     //Currently not being used
     private float rotationSpeed = 7500f;
 
-    //private Vector3 originalPos;
-    // private Transform defaultParentPos;
 
     //Assign camera
     private void Start()

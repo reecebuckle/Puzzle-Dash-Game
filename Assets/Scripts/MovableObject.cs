@@ -9,7 +9,7 @@ public class MovableObject : MonoBehaviour
 
     public float breakForce = 35f;
     [HideInInspector] public bool pickedUp = false;
-    [HideInInspector] public PickUp pickupParent;
+    [HideInInspector] public MagnesisObject pickupParent;
 
 
     private void OnCollisionEnter(Collision collision)
