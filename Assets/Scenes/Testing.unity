@@ -1013,8 +1013,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0acc72d8d55471459c7df90a2c86584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 
   Side: 1
   Player: {fileID: 1870309865}
+  playerMoveScript: {fileID: 0}
 --- !u!54 &80497020
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5283,7 +5285,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823010983}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0b0f8dc9f884ba741a7850a15d1f19b2, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -17182,7 +17184,7 @@ GameObject:
   - component: {fileID: 1692904494}
   - component: {fileID: 1692904495}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: CameraParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17217,6 +17219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1858374984}
+  playerMoveScript: {fileID: 1870309866}
+  camera: {fileID: 542638116}
 --- !u!54 &1692904495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17340,8 +17344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0acc72d8d55471459c7df90a2c86584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 
   Side: 0
   Player: {fileID: 1870309865}
+  playerMoveScript: {fileID: 0}
 --- !u!54 &1762290436
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18550,7 +18556,9 @@ MonoBehaviour:
   maxSlopeAngle: 35
   slopeAngle: 0
   wallColliding: 0
-  wallRunSide: 
+  wallRunning: 0
+  wallRunLeft: 0
+  WallRunRight: 0
   slideForce: 400
   flatSlideCounterMovement: 0.2
   jumpForce: 550
