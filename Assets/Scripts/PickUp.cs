@@ -40,7 +40,7 @@ public class PickUp : MonoBehaviour
     private Vector3 raycastPos;
 
     //Currently not being used
-    private float rotationSpeed = 100f;
+    private float rotationSpeed = 7500f;
 
     //private Vector3 originalPos;
     // private Transform defaultParentPos;
@@ -55,6 +55,12 @@ public class PickUp : MonoBehaviour
     {
         //Look for holdable objects
         lookForObjects();
+
+        //Drop held object if sprinting or crouching
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            DropObject();
+        }
 
         //Drop held object if it surpasses max distance from player (usually 15f)
         if (heldObject != null)
@@ -82,7 +88,7 @@ public class PickUp : MonoBehaviour
             }
         }
 
-        //Move held object position towards / away player
+        //Move object position (towards/away player) and its rotation
         if (Input.GetKey(KeyCode.F) && heldObject != null)
         {
             transformObjectPosition();
@@ -100,9 +106,9 @@ public class PickUp : MonoBehaviour
             Vector3 direction = guide.position - heldObjectRB.position;
             heldObjectRB.velocity = direction.normalized * currentSpeed;
             //Rotation
-            lookRot = Quaternion.LookRotation(myCamera.transform.position - heldObjectRB.position);
-            lookRot = Quaternion.Slerp(myCamera.transform.rotation, lookRot, rotationSpeed * Time.fixedDeltaTime);
-            heldObjectRB.MoveRotation(lookRot);
+            //lookRot = Quaternion.LookRotation(myCamera.transform.position - heldObjectRB.position);
+            //lookRot = Quaternion.Slerp(myCamera.transform.rotation, lookRot, rotationSpeed * Time.fixedDeltaTime);
+            //heldObjectRB.MoveRotation(lookRot);
         }
 
     }
@@ -132,6 +138,21 @@ public class PickUp : MonoBehaviour
                 //move position of pickup parent by move amount (away from player)
                 guide.transform.Translate(-Vector3.forward * Time.fixedDeltaTime * moveAmount);
             }
+
+        }
+        //rotate X axis clockwise
+        else if (Input.GetMouseButton(0))
+        {
+            float rotAmount = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            heldObject.transform.Rotate(0, rotAmount, 0, Space.Self);
+
+
+        }
+        //rotate y axis clockwise
+        else if (Input.GetMouseButton(1))
+        {
+            float rotAmount = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            heldObjectRB.transform.Rotate(rotAmount, 0, 0, Space.Self);
         }
     }
 
@@ -198,33 +219,5 @@ public class PickUp : MonoBehaviour
         yield return new WaitUntil(() => Mathf.Approximately(heldObjectRB.velocity.y, 0) == true);
         heldObjectRB.constraints = RigidbodyConstraints.FreezeAll;
         Debug.Log("Frozen object");
-
     }
-
-
-    public void RotateObject()
-    {
-        //Stop camera movement to allow player to rotate held object
-        // if (Input.GetKeyDown(KeyCode.R) && isHolding == true) {
-        // myCamera.GetComponent<MouseLook>().enabled = false;
-        //transform.root.GetComponent<MouseLook>().enabled = false;
-
-        // }
-
-        //enable rotation of held object
-        // if (Input.GetKey(KeyCode.R) && isHolding == true) {
-        // var rotationX = Input.GetAxis("Mouse X") * objRotationSpeed;
-        //var rotationY = Input.GetAxis("Mouse Y") * objRotationSpeed;
-        //movableObject.heldObject.transform.RotateAroundLocal(myCamera.up, -Mathf.Deg2Rad * rotationX);
-        //movableObject.heldObject.transform.RotateAroundLocal(myCamera.right, -Mathf.Deg2Rad * rotationY);
-
-        // }
-
-        //  if (Input.GetKeyUp(KeyCode.R) && isHolding == true) {
-        // myCamera.GetComponent<MouseLook>().enabled = true;
-        // transform.root.GetComponent<MouseLook>().enabled = true;
-
-        // }
-    }
-
 }
