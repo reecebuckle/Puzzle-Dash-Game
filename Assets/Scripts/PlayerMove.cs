@@ -3,13 +3,14 @@
 using System;
 using UnityEngine;
 
-public class DaniPlayerMovement : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
 
     //Assingables
     public Transform playerCam;
     public Transform orientation;
 
+    public Transform raycastOrigin;
     //Other
     private Rigidbody rb;
 
@@ -31,12 +32,23 @@ public class DaniPlayerMovement : MonoBehaviour
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
 
+    public float slopeAngle;
+
+    // Wallrun
+    [HideInInspector]
+    public bool wallColliding = false;
+    public bool wallRunning = false;
+    [HideInInspector]
+    public bool wallRunLeft = false;
+    [HideInInspector]
+    public bool WallRunRight = false;
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
     private Vector3 playerScale;
     public float slideForce = 400;
-    public float slideCounterMovement = 0.2f;
+    float slideCounterMovement;
 
+    public float flatSlideCounterMovement = 0.2f;
     //Jumping
     private bool readyToJump = true;
     private float jumpCooldown = 0.25f;
@@ -65,18 +77,34 @@ public class DaniPlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!grounded && y != 0)
+        {
+            WallRun();
+        }
+        else if (wallRunning)
+        {
+            resetWallRun();
+        }
         Movement();
+
     }
 
     private void Update()
     {
+        determineSlope();
         MyInput();
         Look();
-    }
 
-    /// <summary>
-    /// Find user input. Should put this in its own class but im lazy
-    /// </summary>
+    }
+    private void determineSlope()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(raycastOrigin.position, raycastOrigin.TransformDirection(Vector3.down), out hit))
+        {
+            slopeAngle = Vector3.Angle(hit.normal, raycastOrigin.forward) - 90;
+        }
+    }
     private void MyInput()
     {
         x = Input.GetAxisRaw("Horizontal");
@@ -86,17 +114,118 @@ public class DaniPlayerMovement : MonoBehaviour
         sprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
         moveSpeed = sprinting ? sprintSpeed : walkSpeed;
-
         maxSpeed = sprinting ? 40 : 20;
+        slideCounterMovement = (slopeAngle < 0) ? -1 : flatSlideCounterMovement;
+
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
             StartCrouch();
         if (Input.GetKeyUp(KeyCode.LeftControl))
             StopCrouch();
     }
+    private void WallRun()
+    {
+        float wallRunSpeed = 1f;
+        float wallRunSpeedCap = 25f;
+        Vector3 leftBack = new Vector3(-1, 0, -1);
+        Vector3[] directions = {
+            orientation.transform.TransformDirection(new Vector3(-1, 0, -1).normalized),//back left
+            orientation.transform.TransformDirection(Vector3.left),//left
+            orientation.transform.TransformDirection(new Vector3(-1, 0, 1).normalized),//front left
+            orientation.transform.TransformDirection(new Vector3(1, 0, 1).normalized),//front right
+            orientation.transform.TransformDirection(Vector3.right),//right
+            orientation.transform.TransformDirection(new Vector3(1, 0, -1).normalized)//back right
+        };
+        bool foundWallInRange = false;
+        for (int i = 0; i < directions.Length; i++)
+        {
+            Vector3 raycastDirection = directions[i];
 
+            Debug.DrawRay(orientation.position, raycastDirection, Color.blue);
+            // orientation of wallrun?
+            RaycastHit hit;
+            if (Physics.Raycast(orientation.position, raycastDirection, out hit))
+            {
+                float angle = Vector3.Angle(hit.normal, Vector3.up);
+
+                if (hit.distance <= 1 && (angle <= 100 && angle >= 80))
+                {
+                    if (!jumping)
+                    {
+                        if (i <= 2)
+                        {
+                            wallRunLeft = true;
+                        }
+                        else
+                        {
+                            WallRunRight = true;
+                        }
+                        wallRunning = true;
+                        foundWallInRange = true;
+                        Vector3 velocity = rb.velocity;
+                        Vector3 normal = hit.normal;
+                        normal.y = 0;
+                        velocity.y = 0;
+                        rb.AddForce(normal * jumpForce / 4 * -1);
+                        normal.Normalize();
+                        rb.velocity = velocity;
+                        velocity = Vector3.ProjectOnPlane(velocity, normal);
+                        Vector3 direction = velocity.normalized;
+                        Debug.DrawRay(hit.point, direction, Color.green);
+                        maxSpeed = sprintSpeed;
+                        // rb.velocity = velocity;
+                        // rb.useGravity = false;
+                        // rb.isKinematic = true;
+                        // grounded = true;
+                        // Debug.Log(rb.velocity.magnitude);
+                        // transform.position = Vector3.MoveTowards(transform.position, direction * wallRunSpeed * Time.deltaTime, 0.5f);
+
+                        if (rb.velocity.magnitude <= wallRunSpeedCap)
+                        {
+                            rb.AddForce(direction * wallRunSpeed * Time.deltaTime);
+                        }
+                        else
+                        {
+                            rb.velocity = rb.velocity.normalized * wallRunSpeedCap;
+                        }
+                        // if we detected a raycast in the wall run range, stop checking for the other one
+                    }
+                    else
+                    {
+                        // jump off
+                        rb.AddForce(hit.normal * (jumpForce / 3));
+                        resetWallRun();
+                        grounded = true;
+                        Jump();
+                    }
+                    break;
+                }
+            }
+            else
+            {
+                // resetWallRun();
+            }
+        }
+        if (!foundWallInRange)
+        {
+            // if none of the raycasts have found a wall in range
+            resetWallRun();
+        }
+
+    }
+    private void resetWallRun()
+    {
+        maxSpeed = sprintSpeed;
+        rb.isKinematic = false;
+        wallRunning = false;
+        grounded = false;
+        rb.useGravity = true;
+        wallRunLeft = false;
+        WallRunRight = false;
+    }
     private void StartCrouch()
     {
+
         transform.localScale = crouchScale;
         transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
         if (rb.velocity.magnitude > 0.5f)
@@ -117,7 +246,8 @@ public class DaniPlayerMovement : MonoBehaviour
     private void Movement()
     {
         //Extra gravity
-        rb.AddForce(Vector3.down * Time.deltaTime * 10);
+        if (!wallRunning)
+            rb.AddForce(Vector3.down * Time.deltaTime * 10);
 
         //Find actual velocity relative to where player is looking
         Vector2 mag = FindVelRelativeToLook();
@@ -161,6 +291,7 @@ public class DaniPlayerMovement : MonoBehaviour
         //Apply forces to move player
         rb.AddForce(orientation.transform.forward * y * moveSpeed * Time.deltaTime * multiplier * multiplierV);
         rb.AddForce(orientation.transform.right * x * moveSpeed * Time.deltaTime * multiplier);
+
     }
 
     private void Jump()
