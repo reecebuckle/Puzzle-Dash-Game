@@ -6,7 +6,7 @@ public class HoldObject : MonoBehaviour
 {
     //Set these in Unity (except look object is just for reference)
     [Header("Player Holding Properities")]
-    [SerializeField] private Transform guide = null;
+    [SerializeField] private Transform holdPosition = null;
     public int interactableLayerIndex;
     public GameObject lookObject;
 
@@ -78,11 +78,11 @@ public class HoldObject : MonoBehaviour
         if (heldObject != null)
         {
             //really jiggery
-            //heldObject.transform.position = guide.transform.position;
-            currentDist = Vector3.Distance(guide.position, heldObjectRB.position);
+            //heldObject.transform.position = holdPosition.transform.position;
+            currentDist = Vector3.Distance(holdPosition.position, heldObjectRB.position);
             currentSpeed = Mathf.SmoothStep(minSpeed, maxSpeed, currentDist / maxDistance);
             currentSpeed *= Time.fixedDeltaTime;
-            Vector3 direction = guide.position - heldObjectRB.position;
+            Vector3 direction = holdPosition.position - heldObjectRB.position;
             heldObjectRB.velocity = direction.normalized * currentSpeed;
 
             //Rotation
@@ -133,9 +133,8 @@ public class HoldObject : MonoBehaviour
         //re-freeze rotation when held
         heldObjectRB.constraints = RigidbodyConstraints.FreezeRotation;
         //Temporarily disable collisions when picked up
-        //heldObjectRB.isKinematic = true;
-        //heldObjectRB.detectCollisions = false;
-        //heldObjectRB.co
+        heldObjectRB.detectCollisions = false;
+
     }
 
     //Drop object
@@ -143,11 +142,10 @@ public class HoldObject : MonoBehaviour
     {
         heldObject.transform.parent = null;
         heldObjectRB.constraints = RigidbodyConstraints.None;
-
         currentDist = 0;
+
         //Reanable physics
-        //heldObjectRB.isKinematic = false;
-        //heldObjectRB.detectCollisions = true;
+        heldObjectRB.detectCollisions = true;
         heldObject = null;
 
     }
@@ -157,9 +155,10 @@ public class HoldObject : MonoBehaviour
     {
         tryThrow = false;
         heldObjectRB.constraints = RigidbodyConstraints.None;
+    
         //renable physics
-        //heldObjectRB.detectCollisions = true;
-        heldObjectRB.AddForce(guide.transform.forward * throwForce);
+        heldObjectRB.detectCollisions = true;
+        heldObjectRB.AddForce(holdPosition.transform.forward * throwForce);
         //WaitUntilThrowing();
         heldObject = null;
     }
@@ -168,9 +167,7 @@ public class HoldObject : MonoBehaviour
     public IEnumerator WaitUntilThrowing()
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        heldObjectRB.AddForce(guide.transform.forward * throwForce);
+        heldObjectRB.AddForce(holdPosition.transform.forward * throwForce);
 
     }
-
-
 }
