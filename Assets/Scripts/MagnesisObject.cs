@@ -8,8 +8,6 @@ public class MagnesisObject : MonoBehaviour
     [Header("Magnesis-ish Properities")]
     [SerializeField] private Transform guide = null;
     [SerializeField] private Transform defaultGuide = null;
-
-    //[SerializeField] private Transform orientation = null;
     public int interactableLayerIndex;
     public GameObject lookObject;
 
@@ -21,27 +19,20 @@ public class MagnesisObject : MonoBehaviour
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private float maxDistance = 15f;
     [SerializeField] private float moveAmount = 15f;
+    [SerializeField] private float rotationSpeed = 7500f;
 
-    //Camera
+    //Camera and Moveable Object
     private Camera myCamera;
-
-    //Reference to MovableObject
     private MovableObject movableObject;
 
     //Speed paremters which apply to objects movement speed
     private float currentSpeed = 0f;
     private float currentDist = 0f;
-    private float objRotationSpeed = 100f;
     private Rigidbody heldObjectRB;
 
     //Variables in regards to viewing / looking at the obstacle
-    Quaternion lookRot;
     private float sphereCastRadius = 0.5f;
     private Vector3 raycastPos;
-
-    //Currently not being used
-    private float rotationSpeed = 7500f;
-
 
     //Assign camera
     private void Start()
@@ -52,25 +43,17 @@ public class MagnesisObject : MonoBehaviour
     void Update()
     {
         //Look for holdable objects
-        lookForObjects();
-
-
+        LookForObjects();
 
         //Drop held object if it surpasses max distance from player (usually 15f)
         if (heldObject != null)
         {
             //Drop held object if sprinting or crouching
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl))
-            {
                 DropObject();
-            }
 
-            //float objDistanceToParent = Vector3.Distance (heldObject.transform.position, guide.transform.position);
-            float playerDistanceToObject = Vector3.Distance(transform.position, heldObject.transform.position);
-            if (playerDistanceToObject > (maxDistance + 2f))
-            {
-                DropObject();
-            }
+
+            CheckDropDistance();
         }
 
         //Upon pressing E
@@ -78,21 +61,16 @@ public class MagnesisObject : MonoBehaviour
         {
             //and we aren't holding an object and actively looking at an object
             if (heldObject == null && lookObject != null)
-            {
                 PickUpObject();
-            }
             //if we press E whilst holding object, we drop it
             else if (heldObject != null)
-            {
                 DropObject();
-            }
         }
 
         //Move object position (towards/away player) and its rotation
         if (Input.GetKey(KeyCode.F) && heldObject != null)
-        {
-            transformObjectPosition();
-        }
+            TransformObjectPositionRotation();
+
     }
 
     //Velocity movement toward pickup parent and rotation
@@ -100,27 +78,33 @@ public class MagnesisObject : MonoBehaviour
     {
         if (heldObject != null)
         {
+            //Smooths object movement
             currentDist = Vector3.Distance(guide.position, heldObjectRB.position);
             currentSpeed = Mathf.SmoothStep(minSpeed, maxSpeed, currentDist / maxDistance);
             currentSpeed *= Time.fixedDeltaTime;
             Vector3 direction = guide.position - heldObjectRB.position;
             heldObjectRB.velocity = direction.normalized * currentSpeed;
-            //Rotation
-            //lookRot = Quaternion.LookRotation(myCamera.transform.position - heldObjectRB.position);
-            //lookRot = Quaternion.Slerp(myCamera.transform.rotation, lookRot, rotationSpeed * Time.fixedDeltaTime);
-            //heldObjectRB.MoveRotation(lookRot);
         }
+    }
 
+    //Checks maximum drop distance
+    public void CheckDropDistance()
+    {
+        //Checks distance between player and max hold distance and drops if required
+        float playerDistanceToObject = Vector3.Distance(transform.position, heldObject.transform.position);
+        if (playerDistanceToObject > (maxDistance + 2f))
+            DropObject();
     }
 
     //Handles positive of object relative to player
-    public void transformObjectPosition()
+    //This is called from Update() not fixed update since it doesn't actually change any physics of the obstacle, 
+    //just it's transform + it works a lot smoother when matched with player's frame rate
+    public void TransformObjectPositionRotation()
     {
         //Scroll forwards
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             float playerDistanceToParent = Vector3.Distance(transform.position, guide.transform.position);
-
             //Check object hasn't surpassed max distance
             if (playerDistanceToParent < maxDistance)
             {
@@ -145,8 +129,6 @@ public class MagnesisObject : MonoBehaviour
         {
             float rotAmount = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
             heldObject.transform.Rotate(0, rotAmount, 0, Space.Self);
-
-
         }
         //rotate y axis clockwise
         else if (Input.GetMouseButton(1))
@@ -157,9 +139,8 @@ public class MagnesisObject : MonoBehaviour
     }
 
 
-
     //Check if we are currently looking at a holdable object (if broken then drop)
-    public void lookForObjects()
+    public void LookForObjects()
     {
         raycastPos = myCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
@@ -209,8 +190,8 @@ public class MagnesisObject : MonoBehaviour
     {
         Debug.Log("Freezing position");
         StartCoroutine(WaitToFreeze());
-
     }
+
     public IEnumerator WaitToFreeze()
     {
         Debug.Log("Waiting to Freeze");
