@@ -5,7 +5,7 @@ public class CameraMove : MonoBehaviour
 
     public Transform player;
     public PlayerMove playerMoveScript;
-    public Camera camera;
+    public Camera cam;
     private float _cameraRotationSpeed = 3.5f;
 
     private void Update()
@@ -15,44 +15,28 @@ public class CameraMove : MonoBehaviour
         {
             if (playerMoveScript.wallRunLeft)
             {
-                tiltRight();
+                Tilt(-15f);
             }
             else if (playerMoveScript.WallRunRight)
             {
-                tiltLeft();
+                Tilt(15f);
             }
         }
         else
         {
-            removeTilt();
+            Tilt(0f);
         }
     }
     void FixedUpdate()
     {
 
     }
-    void tiltLeft()
+    void Tilt(float tiltAngle)
     {
-        float angle = camera.transform.eulerAngles.z;
-        float targetAngle = 20f;
+        float angle = cam.transform.eulerAngles.z;
+        float targetAngle = tiltAngle;
         angle = Mathf.LerpAngle(angle, targetAngle, _cameraRotationSpeed * Time.deltaTime);
-        Vector3 tilt = new Vector3(camera.transform.eulerAngles.x, camera.transform.eulerAngles.y, angle);
-        camera.transform.eulerAngles = tilt;
-    }
-    void tiltRight()
-    {
-        float angle = camera.transform.eulerAngles.z;
-        float targetAngle = -20f;
-        angle = Mathf.LerpAngle(angle, targetAngle, _cameraRotationSpeed * Time.deltaTime);
-        Vector3 tilt = new Vector3(camera.transform.eulerAngles.x, camera.transform.eulerAngles.y, angle);
-        camera.transform.eulerAngles = tilt;
-    }
-    void removeTilt()
-    {
-        float angle = camera.transform.eulerAngles.z;
-        float targetAngle = 0f;
-        angle = Mathf.LerpAngle(angle, targetAngle, _cameraRotationSpeed * Time.deltaTime);
-        Vector3 tilt = new Vector3(camera.transform.eulerAngles.x, camera.transform.eulerAngles.y, angle);
-        camera.transform.eulerAngles = tilt;
+        Vector3 tilt = new Vector3(cam.transform.eulerAngles.x, cam.transform.eulerAngles.y, angle);
+        cam.transform.eulerAngles = tilt;
     }
 }

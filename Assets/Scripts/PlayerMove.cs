@@ -148,7 +148,7 @@ public class PlayerMove : MonoBehaviour
             {
                 float angle = Vector3.Angle(hit.normal, Vector3.up);
 
-                if (hit.distance <= 1 && (angle <= 100 && angle >= 80))
+                if (hit.distance <= 0.8f && (angle <= 100 && angle >= 80))
                 {
                     if (!jumping)
                     {
