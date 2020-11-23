@@ -65,6 +65,7 @@ public class PlayerMove : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
     }
 
     void Start()

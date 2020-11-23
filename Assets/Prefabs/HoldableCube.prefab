@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 876497619454833776}
   m_Layer: 12
   m_Name: HoldableCube
-  m_TagString: HoldableObjects
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

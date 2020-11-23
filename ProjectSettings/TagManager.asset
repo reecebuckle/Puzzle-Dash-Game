@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HoldableObjects
   - Ground
   layers:
   - Default
@@ -20,7 +19,7 @@ TagManager:
   - Ground
   - Movable Objects
   - Holdable Objects
-  - Holdable Objects 2
+  - 
   - 
   - 
   - 
