@@ -43,4 +43,8 @@ public class MovableObject : MonoBehaviour
         pickedUp = true;
 
     }
+
+    public void PlaySoundTrack() {
+        
+    }
 }

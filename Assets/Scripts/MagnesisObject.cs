@@ -102,6 +102,7 @@ public class MagnesisObject : MonoBehaviour
     //just it's transform + it works a lot smoother when matched with player's frame rate
     public void TransformObjectPositionRotation()
     {
+        
         //Scroll forwards
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
