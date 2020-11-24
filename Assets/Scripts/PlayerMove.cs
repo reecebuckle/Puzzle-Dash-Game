@@ -114,9 +114,11 @@ public class PlayerMove : MonoBehaviour
         crouching = Input.GetKey(KeyCode.LeftControl);
         sprinting = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
 
-        moveSpeed = sprinting ? sprintSpeed : walkSpeed;
-        maxSpeed = sprinting ? 40 : 20;
-        slideCounterMovement = (slopeAngle < 0) ? -1 : flatSlideCounterMovement;
+        // moveSpeed = sprinting ? sprintSpeed : walkSpeed;
+        // maxSpeed = sprinting ? 40 : 20;
+        moveSpeed = walkSpeed;
+        maxSpeed = 20f;
+        slideCounterMovement = (slopeAngle < -10) ? -1 : flatSlideCounterMovement;
 
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -175,7 +177,7 @@ public class PlayerMove : MonoBehaviour
                         Debug.DrawRay(hit.point, direction, Color.green);
                         maxSpeed = sprintSpeed;
                         // rb.velocity = velocity;
-                        // rb.useGravity = false;
+                        rb.useGravity = false;
                         // rb.isKinematic = true;
                         // grounded = true;
                         // Debug.Log(rb.velocity.magnitude);
