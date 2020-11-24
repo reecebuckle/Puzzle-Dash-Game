@@ -1,4 +1,3 @@
-// Some stupid rigidbody based movement by Dani
 
 using System;
 using UnityEngine;
@@ -61,6 +60,7 @@ public class PlayerMove : MonoBehaviour
     //Sliding
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
+    public SoundPlayer soundPlayer;
 
     void Awake()
     {
@@ -119,6 +119,12 @@ public class PlayerMove : MonoBehaviour
         moveSpeed = walkSpeed;
         maxSpeed = 20f;
         slideCounterMovement = (slopeAngle < -10) ? -1 : flatSlideCounterMovement;
+
+        if (grounded && (x != 0 || y != 0))
+        {
+            if (!soundPlayer.audio.isPlaying)
+                soundPlayer.PlaySound(soundPlayer.running);
+        }
 
         //Crouching
         if (Input.GetKeyDown(KeyCode.LeftControl))
