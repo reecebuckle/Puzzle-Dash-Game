@@ -52,9 +52,10 @@ public class MagnesisObject : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl))
                 DropObject();
 
-
+            //small bug here that causes null pointer if doesnt check quick enough
             CheckDropDistance();
         }
+
 
         //Upon pressing E
         if (Input.GetKeyDown(KeyCode.E))
