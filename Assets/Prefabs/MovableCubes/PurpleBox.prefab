@@ -326,7 +326,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b7a405a281bb9fd46ad443aca0f98034, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -423,10 +423,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupWaitTime: 0.2
+  delayFreeze: 1
   breakForce: 35
+  audioSource: {fileID: 1451018718188651229}
   pickedUp: 0
   pickupParent: {fileID: 0}
-  audioSource: {fileID: 1451018718188651229}
 --- !u!54 &1451018718188651227
 Rigidbody:
   m_ObjectHideFlags: 0
