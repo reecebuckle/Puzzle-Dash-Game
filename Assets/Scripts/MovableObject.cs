@@ -6,20 +6,24 @@ public class MovableObject : MonoBehaviour
 {
     [Header("Movable Obstacle Properities")]
     public float pickupWaitTime = 0.2f;
+    public float delayFreeze = 1f;
 
     public float breakForce = 35f;
+    public AudioSource audioSource;
     [HideInInspector] public bool pickedUp = false;
     [HideInInspector] public MagnesisObject pickupParent;
-    public AudioSource audioSource;
+    private Rigidbody rb;
+
 
     private void Start()
     {
         // just incase PlayOnAwake is ticked
         audioSource.Stop();
+        // Freeze rigidbody after spawning and dropping into place nicely
+        StartCoroutine(LockPosition());
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (pickedUp)
         {
@@ -33,7 +37,7 @@ public class MovableObject : MonoBehaviour
         else if (!pickedUp && pickupParent != null)
         {
             //if object collides with the ground specfically
-            if (collision.collider.tag == "Ground")
+            if (collision.collider.tag == "Ground" || collision.collider.tag == "MovableObject")
             {
                 pickupParent.FreezeObject();
                 //reset to null so it doesn't attempt this code multiple times once object is dropped and player collides with it
@@ -49,7 +53,14 @@ public class MovableObject : MonoBehaviour
         PlaySoundTrack();
         yield return new WaitForSecondsRealtime(pickupWaitTime);
         pickedUp = true;
+    }
 
+    public IEnumerator LockPosition()
+    {
+        yield return new WaitForSecondsRealtime(delayFreeze);
+        //Freeze just incase
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
 
     }
 

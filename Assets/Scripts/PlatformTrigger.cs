@@ -17,7 +17,7 @@ public class PlatformTrigger : MonoBehaviour
         //Once fully open ignore checking
         if (!isOpen)
         {
-            if (collision.collider.name == "RedBox")
+            if (collision.collider.name == "RedBox" || collision.collider.name == "SmallBox")
             {
                 isOpen = true;
                 StartCoroutine(OpenDoor());

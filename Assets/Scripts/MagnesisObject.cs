@@ -237,13 +237,19 @@ public class MagnesisObject : MonoBehaviour
         StartCoroutine(movableObject.PickUp());
 
         //Following lines account for object being too close/too far from player 
-        // float width = heldObjectRB.GetComponent<Renderer>().bounds.size.x;
-        //float height = heldObjectRB.GetComponent<Renderer>().bounds.size.y;
-        //float depth = heldObjectRB.GetComponent<Renderer>().bounds.size.z;
-        //float offset = Mathf.Max(width, height, depth) - 3;
-        //Debug.Log(offset);
+        float width = heldObjectRB.GetComponent<Renderer>().bounds.size.x;
+        float height = heldObjectRB.GetComponent<Renderer>().bounds.size.y;
+        float depth = heldObjectRB.GetComponent<Renderer>().bounds.size.z;
+        float max = Mathf.Max(width, height, depth);
+        float offset = max;
+        Debug.Log("Max is: " + max + " and offset is " + offset);
         //offset the guide by the maximum dimension of the object so it doesnt collide with player
-        //guide.transform.Translate(Vector3.forward * offset);
+        if (offset > 3)
+        {
+            Debug.Log("Offsetting pick up position");
+            guide.transform.Translate(Vector3.forward * offset);
+        }
+
     }
 
     //Drop object
