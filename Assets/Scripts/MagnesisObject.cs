@@ -9,6 +9,7 @@ public class MagnesisObject : MonoBehaviour
     [SerializeField] private Transform guide = null;
     [SerializeField] private Transform defaultGuide = null;
     public int interactableLayerIndex;
+    //Sound player
     public GameObject lookObject;
 
     //Can toggle these in Unity
@@ -34,6 +35,8 @@ public class MagnesisObject : MonoBehaviour
     private float sphereCastRadius = 0.5f;
     private Vector3 raycastPos;
 
+
+
     //Assign camera
     private void Start()
     {
@@ -56,6 +59,10 @@ public class MagnesisObject : MonoBehaviour
 
             //small bug here that causes null pointer if doesnt check quick enough
             CheckDropDistance();
+
+            //Play sound
+            //if (!soundPlayer.audio.isPlaying)
+            //  soundPlayer.PlaySound(soundPlayer.magnesis);
         }
 
         //Upon pressing E
@@ -230,31 +237,14 @@ public class MagnesisObject : MonoBehaviour
         StartCoroutine(movableObject.PickUp());
 
         //Following lines account for object being too close/too far from player 
-        float width = heldObjectRB.GetComponent<Renderer>().bounds.size.x;
-        float height = heldObjectRB.GetComponent<Renderer>().bounds.size.y;
-        float depth = heldObjectRB.GetComponent<Renderer>().bounds.size.z;
-        float offset = Mathf.Max(width, height, depth) - 3;
+        // float width = heldObjectRB.GetComponent<Renderer>().bounds.size.x;
+        //float height = heldObjectRB.GetComponent<Renderer>().bounds.size.y;
+        //float depth = heldObjectRB.GetComponent<Renderer>().bounds.size.z;
+        //float offset = Mathf.Max(width, height, depth) - 3;
         //Debug.Log(offset);
         //offset the guide by the maximum dimension of the object so it doesnt collide with player
-        guide.transform.Translate(Vector3.forward * offset);
+        //guide.transform.Translate(Vector3.forward * offset);
     }
-
-
-
-    // public IEnumerator OpenDoor()
-    // {
-    // float totalMovementTime = 50f;
-    // float currentMovementTime = 0f;
-    // Vector3 destination = door.transform.position - new Vector3(0, -21, 0);
-    // while (Vector3.Distance(transform.localPosition, destination) > 0)
-    //{
-    //  door.transform.position = Vector3.Lerp(door.transform.position, (door.transform.position + new Vector3(0, -21, 0)), (currentMovementTime / totalMovementTime));
-    //   currentMovementTime += Time.deltaTime;
-    //   yield return null;
-    //  }
-
-    // }
-
 
     //Drop object
     public void DropObject()
@@ -263,6 +253,8 @@ public class MagnesisObject : MonoBehaviour
         heldObjectRB.constraints = RigidbodyConstraints.None;
         heldObject = null;
         movableObject.pickedUp = false;
+        //Stop Playing audio sound track
+        movableObject.StopSoundTrack();
         //Freeze position and rotation of obstacle by a few seconds (dropFreezeTime) 
         currentDist = 0;
         //reset guide position upon dropping

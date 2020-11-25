@@ -10,6 +10,13 @@ public class MovableObject : MonoBehaviour
     public float breakForce = 35f;
     [HideInInspector] public bool pickedUp = false;
     [HideInInspector] public MagnesisObject pickupParent;
+    public AudioSource audioSource;
+
+    private void Start()
+    {
+        // just incase PlayOnAwake is ticked
+        audioSource.Stop();
+    }
 
 
     private void OnCollisionEnter(Collision collision)
@@ -39,12 +46,22 @@ public class MovableObject : MonoBehaviour
     //this is used to prevent the connection from breaking when you just picked up the object as it sometimes fires a collision with the ground or whatever it is touching
     public IEnumerator PickUp()
     {
+        PlaySoundTrack();
         yield return new WaitForSecondsRealtime(pickupWaitTime);
         pickedUp = true;
 
+
     }
 
-    public void PlaySoundTrack() {
-        
+    public void PlaySoundTrack()
+    {
+        if (!audioSource.isPlaying)
+            audioSource.Play();
+    }
+
+    public void StopSoundTrack()
+    {
+        audioSource.Stop();
+
     }
 }
