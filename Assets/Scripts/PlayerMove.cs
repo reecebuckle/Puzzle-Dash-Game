@@ -320,6 +320,7 @@ public class PlayerMove : MonoBehaviour
             else if (rb.velocity.y > 0)
                 rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
 
+            soundPlayer.PlaySound(soundPlayer.jump);
             Invoke(nameof(ResetJump), jumpCooldown);
         }
     }

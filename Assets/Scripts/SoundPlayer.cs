@@ -12,10 +12,10 @@ public class SoundPlayer : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlaySound(jump);
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     PlaySound(jump);
+        // }
     }
     public void PlaySound(AudioClip soundClip)
     {
