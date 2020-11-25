@@ -65,7 +65,7 @@ public class HoldObject : MonoBehaviour
         }
 
         //Mouse wheel click leads to throw object
-        if (Input.GetMouseButton(2) && heldObject != null)
+        if (Input.GetKey(KeyCode.F) && heldObject != null)
             ThrowObject();
 
     }
@@ -155,7 +155,7 @@ public class HoldObject : MonoBehaviour
     {
         tryThrow = false;
         heldObjectRB.constraints = RigidbodyConstraints.None;
-    
+
         //renable physics
         heldObjectRB.detectCollisions = true;
         heldObjectRB.AddForce(holdPosition.transform.forward * throwForce);

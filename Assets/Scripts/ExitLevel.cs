@@ -11,6 +11,8 @@ public class ExitLevel : MonoBehaviour
     {
         if (other.gameObject.layer == 9)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             SceneManager.LoadScene(nextLevel);
         }
     }

@@ -15,7 +15,7 @@ public class MagnesisObject : MonoBehaviour
     [Header("Object Movement Speed / Range")]
     public GameObject heldObject;
     [SerializeField] private float minSpeed = 0;
-    [SerializeField] private float maxSpeed = 7000f;
+    [SerializeField] private float maxSpeed = 9000f;
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private float maxDistance = 15f;
     [SerializeField] private float moveAmount = 15f;
@@ -48,14 +48,15 @@ public class MagnesisObject : MonoBehaviour
         //Drop held object if it surpasses max distance from player (usually 15f)
         if (heldObject != null)
         {
-            //Drop held object if sprinting or crouching
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftControl))
+            //Drop held object if jumping or crouching
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftControl))
                 DropObject();
+
+            TransformObjectPositionRotation2();
 
             //small bug here that causes null pointer if doesnt check quick enough
             CheckDropDistance();
         }
-
 
         //Upon pressing E
         if (Input.GetKeyDown(KeyCode.E))
@@ -69,8 +70,8 @@ public class MagnesisObject : MonoBehaviour
         }
 
         //Move object position (towards/away player) and its rotation
-        if (Input.GetKey(KeyCode.F) && heldObject != null)
-            TransformObjectPositionRotation();
+        //if (Input.GetKey(KeyCode.F) && heldObject != null)
+        //TransformObjectPositionRotation();
 
     }
 
@@ -100,9 +101,65 @@ public class MagnesisObject : MonoBehaviour
     //Handles positive of object relative to player
     //This is called from Update() not fixed update since it doesn't actually change any physics of the obstacle, 
     //just it's transform + it works a lot smoother when matched with player's frame rate
+    public void TransformObjectPositionRotation2()
+    {
+
+        //Scroll forwards
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            float playerDistanceToParent = Vector3.Distance(transform.position, guide.transform.position);
+            //Check object hasn't surpassed max distance
+            if (playerDistanceToParent < maxDistance)
+            {
+                //move position of pickup parent by move amount (away from player)
+                guide.transform.Translate(Vector3.forward * Time.fixedDeltaTime * moveAmount);
+            }
+        }
+        //Scroll Backwards
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            float playerDistanceToParent = Vector3.Distance(transform.position, guide.transform.position);
+            //Check object hasn't surpassed min distance
+            if (playerDistanceToParent > minDistance)
+            {
+                //move position of pickup parent by move amount (away from player)
+                guide.transform.Translate(-Vector3.forward * Time.fixedDeltaTime * moveAmount);
+            }
+
+        }
+
+        //rotate X axis clockwise
+        if (Input.GetMouseButton(0))
+        {
+            float rotAmount = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            heldObject.transform.Rotate(0, rotAmount, 0, Space.Self);
+        }
+
+        //rotate y axis clockwise
+        if (Input.GetMouseButton(1))
+        {
+            float rotAmount = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            heldObjectRB.transform.Rotate(rotAmount, 0, 0, Space.Self);
+        }
+
+        //rotate z axis clockwise
+        if (Input.GetMouseButton(2))
+        {
+            float rotAmount = rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
+            heldObjectRB.transform.Rotate(0, 0, rotAmount, Space.Self);
+        }
+
+    }
+
+
+
+
+    //Handles positive of object relative to player
+    //This is called from Update() not fixed update since it doesn't actually change any physics of the obstacle, 
+    //just it's transform + it works a lot smoother when matched with player's frame rate
     public void TransformObjectPositionRotation()
     {
-        
+
         //Scroll forwards
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -171,7 +228,33 @@ public class MagnesisObject : MonoBehaviour
         movableObject.pickupParent = this;
         //Pick up object smoothly with a short wait
         StartCoroutine(movableObject.PickUp());
+
+        //Following lines account for object being too close/too far from player 
+        float width = heldObjectRB.GetComponent<Renderer>().bounds.size.x;
+        float height = heldObjectRB.GetComponent<Renderer>().bounds.size.y;
+        float depth = heldObjectRB.GetComponent<Renderer>().bounds.size.z;
+        float offset = Mathf.Max(width, height, depth) - 3;
+        //Debug.Log(offset);
+        //offset the guide by the maximum dimension of the object so it doesnt collide with player
+        guide.transform.Translate(Vector3.forward * offset);
     }
+
+
+
+    // public IEnumerator OpenDoor()
+    // {
+    // float totalMovementTime = 50f;
+    // float currentMovementTime = 0f;
+    // Vector3 destination = door.transform.position - new Vector3(0, -21, 0);
+    // while (Vector3.Distance(transform.localPosition, destination) > 0)
+    //{
+    //  door.transform.position = Vector3.Lerp(door.transform.position, (door.transform.position + new Vector3(0, -21, 0)), (currentMovementTime / totalMovementTime));
+    //   currentMovementTime += Time.deltaTime;
+    //   yield return null;
+    //  }
+
+    // }
+
 
     //Drop object
     public void DropObject()
