@@ -8,7 +8,7 @@ public class PlatformTrigger : MonoBehaviour
     [Header("Platform Properities")]
     [SerializeField] GameObject door = null;
     //how long it takes for door to move, higher is longer
-    [SerializeField] private float doorMovementTime = 50f;
+    [SerializeField] private float doorMovementTime = 150f;
     //Can toggle these in Unity
     private bool isOpen = false;
 
@@ -28,12 +28,11 @@ public class PlatformTrigger : MonoBehaviour
 
     public IEnumerator OpenDoor()
     {
-        float totalMovementTime = 50f;
         float currentMovementTime = 0f;
-        Vector3 destination = door.transform.position - new Vector3(0, -21, 0);
+        Vector3 destination = door.transform.position - new Vector3(0, -6, 0);
         while (Vector3.Distance(transform.localPosition, destination) > 0)
         {
-            door.transform.position = Vector3.Lerp(door.transform.position, (door.transform.position + new Vector3(0, -21, 0)), (currentMovementTime / totalMovementTime));
+            door.transform.position = Vector3.Lerp(door.transform.position, (door.transform.position + new Vector3(0, -21, 0)), (currentMovementTime / doorMovementTime));
             currentMovementTime += Time.deltaTime;
             yield return null;
         }
