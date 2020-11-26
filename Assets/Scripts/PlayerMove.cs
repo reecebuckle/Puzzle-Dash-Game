@@ -2,6 +2,8 @@
 using System;
 using UnityEngine;
 
+//https://www.youtube.com/watch?v=XAC8U9-dTZU
+//Basic player movement is adapted and built on from Dani's player movement tutorials
 public class PlayerMove : MonoBehaviour
 {
 

@@ -30,7 +30,6 @@ public class RespawnCube : MonoBehaviour
 
     //BUTTON Sound track that is played is a free to use song available at:
     //https://freesound.org/people/JarredGibb/sounds/219478/
-    //NOTIFICATION Sound from here https://freesound.org/people/FoolBoyMedia/sounds/352661/
     public void PlaySoundTrack()
     {
         if (!audioSource.isPlaying)
