@@ -2541,7 +2541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
-  doorMovementTime: 100
+  doorMovementTime: 300
+  audioSource: {fileID: 0}
 --- !u!1 &1767998174712567501
 GameObject:
   m_ObjectHideFlags: 0

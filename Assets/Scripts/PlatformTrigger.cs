@@ -8,9 +8,18 @@ public class PlatformTrigger : MonoBehaviour
     [Header("Platform Properities")]
     [SerializeField] GameObject door = null;
     //how long it takes for door to move, higher is longer
-    [SerializeField] private float doorMovementTime = 150f;
+    [SerializeField] private float doorMovementTime = 300f;
+    [SerializeField] private Renderer platformSurface = null;
+    public AudioSource audioSource;
     //Can toggle these in Unity
     private bool isOpen = false;
+
+
+    private void Start()
+    {
+        // just incase PlayOnAwake is ticked
+        audioSource.Stop();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -20,19 +29,30 @@ public class PlatformTrigger : MonoBehaviour
             if (collision.collider.name == "RedBox" || collision.collider.name == "SmallBox")
             {
                 isOpen = true;
+                platformSurface.material.color = Color.green;
                 StartCoroutine(OpenDoor());
+                PlaySoundTrack();
+
             }
 
         }
     }
 
+    //DOOR OPENING SOUND (UNDER FREE USE) AVAILABLE HERE:
+    //https://freesound.org/people/alexo400/sounds/543404/
+    public void PlaySoundTrack()
+    {
+        if (!audioSource.isPlaying)
+            audioSource.Play();
+    }
+
     public IEnumerator OpenDoor()
     {
         float currentMovementTime = 0f;
-        Vector3 destination = door.transform.position - new Vector3(0, -6, 0);
+        Vector3 destination = door.transform.position - new Vector3(0, -10, 0);
         while (Vector3.Distance(transform.localPosition, destination) > 0)
         {
-            door.transform.position = Vector3.Lerp(door.transform.position, (door.transform.position + new Vector3(0, -21, 0)), (currentMovementTime / doorMovementTime));
+            door.transform.position = Vector3.Lerp(door.transform.position, destination, (currentMovementTime / doorMovementTime));
             currentMovementTime += Time.deltaTime;
             yield return null;
         }
